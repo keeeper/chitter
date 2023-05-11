@@ -11,7 +11,7 @@ const UserHero:React.FC<IUserHero> = ({userId}) => {
 
   return (
     <div className="relative bg-gray-50 h-44">
-      {fetchedUser?.coverImahge && (
+      {fetchedUser?.coverImage && (
         <Image src={fetchedUser.coverImage} fill alt="Cover" style={{
           objectFit: "cover"
         }}/>

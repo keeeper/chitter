@@ -3,7 +3,8 @@ interface IInputProps {
   value?: string,
   type?: string,
   disabled: boolean,
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
+  label?: string
 }
 
 const Input:React.FC<IInputProps> = ({
