@@ -17,7 +17,7 @@ const Avatar:React.FC<IAvatarProps> = ({ userId, isLarge, hasBorder }) => {
     event.stopPropagation();
     const url = `/users/${userId}`;
     router.push(url);
-  }, [])
+  }, [router, userId])
 
   return (
     <div className={`${hasBorder ? 'border-4 border-white' : ''} ${isLarge ? 'w-32 h-32' : 'w-12 h-12'} relative rounded-full hover: opacity-90 transition cursor-pointer`}>
