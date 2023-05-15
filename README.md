@@ -3,7 +3,8 @@ Social network for quick posts sharing inspired by Twitter
 
 ## Features
 - Live posts feed
-- Profile with ability to edit personal data: name, username, bio, avatar, profile image.
+- User profile with ability to edit personal data: name, username, bio, avatar, profile image.
+- Follow / unfollow users
 
 ## Tech stack
 - Next.js
