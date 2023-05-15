@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import {useRouter} from "next/router";
-import { FaComments } from 'react-icons/fa';
 
 const SidebarLogo = () => {
   const router = useRouter();
