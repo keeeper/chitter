@@ -1,3 +1,5 @@
+"use client";
+
 interface IButtonProps {
   label: string,
   secondary?: boolean,

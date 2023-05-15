@@ -1,3 +1,5 @@
+"use client";
+
 import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { FaFeather } from "react-icons/fa";
