@@ -6,6 +6,7 @@ import { useCallback, useState } from "react";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import useLoginModal from "@/hooks/useLoginModal";
 import usePosts from "@/hooks/usePosts";
+import usePost from "@/hooks/usePost";
 import useRegisterModal from "@/hooks/useRegisterModal";
 import Button from "./Button";
 import Avatar from "./Avatar";
@@ -24,6 +25,7 @@ const Form:React.FC<IFormProps> = ({
 
   const {data: currentUser} = useCurrentUser();
   const { mutate: mutatePosts } = usePosts(postId as "string");
+  const { mutate: mutatePost } = usePost(postId as "string");
 
   const [body, setBody] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -31,16 +33,19 @@ const Form:React.FC<IFormProps> = ({
   const onSubmit = useCallback(async () => {
     try {
       setIsLoading(true);
-      await axios.post("api/posts", {body});
+
+      const url = isComment ? `/api/comments?postId=${postId}` : "/api/posts";
+      await axios.post(url, {body});
       toast.success("Chit created!");
       setBody("");
       mutatePosts();
+      mutatePost();
     } catch(error) {
       toast.error("Something went wrong");
     } finally {
       setIsLoading(false);
     }
-  }, [body, mutatePosts])
+  }, [body, mutatePosts, mutatePost, isComment, postId]);
    
   return (
     <div className="border-b-[1px] border-gray-300 px-5 py-2">
