@@ -6,13 +6,13 @@ interface IPostFeedProps {
 }
 
 const PostFeed:React.FC<IPostFeedProps> = ({ userId }) => {
-  const { data: posts = [] } = usePosts(userId);
+  const { data: posts = [] } = usePosts(userId!);
 
   return (
     <>
       {posts.map((post:Record<string, any>) => (
         <PostItem
-          userId={userId}
+          userId={userId!}
           key={post.id}
           data={post}
         />

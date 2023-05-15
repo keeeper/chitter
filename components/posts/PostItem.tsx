@@ -8,7 +8,7 @@ import Avatar from "../Avatar";
 import { AiOutlineHeart, AiFillHeart, AiOutlineMessage } from "react-icons/ai";
 
 interface IPostItemProps {
-  userId: string;
+  userId?: string;
   data: Record<string, any>
 }
 

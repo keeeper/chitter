@@ -15,7 +15,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
       throw new Error("Invalid Id");
     }
 
-    const post = prisma.post.findUnique({
+    const post = await prisma.post.findUnique({
       where: {
         id: postId
       }
@@ -24,11 +24,11 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
     if (!post) {
       throw new Error("Invalid Id");
     }
-
-    let updatedLikeids = [...(post.likedIds || [])];
+    
+    let updatedLikedIds = [...(post.likedIds || [])];
 
     if (req.method === "POST") {
-      updatedLikeids.push(currentUser.id);
+      updatedLikedIds.push(currentUser.id);
 
       try {
         const post = await prisma.post.findUnique({
@@ -60,7 +60,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
     }
 
     if (req.method === "DELETE") {
-      updatedLikeids = updatedLikeids.filter(likedId => likedId !== !currentUser.id);
+      updatedLikedIds = updatedLikedIds.filter((likedId) => !(likedId !== currentUser.id));
     }
 
     const updatedPost = await prisma.post.update({
@@ -68,7 +68,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
         id: postId
       },
       data: {
-        likedIds: updatedLikeids
+        likedIds: updatedLikedIds
       }
     });
 

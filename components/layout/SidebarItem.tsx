@@ -2,12 +2,13 @@ import useCurrentUser from "@/hooks/useCurrentUser";
 import useLoginModal from "@/hooks/useLoginModal";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
+import { IconType } from "react-icons";
 import { BsDot } from "react-icons/bs";
 
 
 interface ISidebarItemProps {
   label: string,
-  href: string,
+  href?: string,
   icon: IconType,
   onClick?: () => void,
   auth?: boolean,
